@@ -1,0 +1,74 @@
+## Preparing aws tools
+
+##pip is normally preloaded on systems by default. If not use below comand to install pip:
+ sudo apt-get install -y python-pip 
+ 
+ ## Use pip to install awscli
+ sudo pip install awscli
+ 
+ ## aws command's output often gives Jason data, which is cumbersome to read to extract the desired Info.
+ ## jq is used to parse Jason data.
+ ## jq is not installed by default in Amazon Linux or Ubuntu. It can be installed as:
+sudo apt-get install jq
+
+## Typical use of jq:
+$ aws route53 list-hosted-zones | jq '.HostedZones[].Name'
+"epitech.nl."
+"awssystemadministration.com."
+## some people prefer "--query" option than jq
+
+## Add the secret aws access key in config file: $HOME/.aws/config 
+aws_access_key_id = <access key id>
+aws_secret_access_key = <secret access key>
+region = us-west-1
+
+## An alternative way is to configure the credentials using aws cli. Shoot following command from $HOME
+# aws configure
+# It is an interactive command and shall ask for access key ID, secret access key and default region.
+#Sample output on my machine:
+
+ C:\Users\Ashish> aws configure
+File association not found for extension .py
+AWS Access Key ID [None]: ****************************
+AWS Secret Access Key [None]: *****************************
+Default region name [None]: ap-south-1   ## For mumbai
+Default output format [None]:           ## Just press Enter
+C:\Users\Ashish>
+
+## Protect the file:
+$chmod 600 $HOME/.aws/config
+
+## Tell your bash about it by adding this line in $HOME/.bashrc
+$export AWS_CONFIG_FILE=$HOME/.aws/config
+
+## Check if evertything is working fine
+$aws ec2 describe-regions --output table
+## It shall throw output like this:
+----------------------------------------------------------
+|                     DescribeRegions                    |
++--------------------------------------------------------+
+||                        Regions                       ||
+|+-----------------------------------+------------------+|
+||             Endpoint              |   RegionName     ||
+|+-----------------------------------+------------------+|
+||  ec2.ap-south-1.amazonaws.com     |  ap-south-1      ||
+||  ec2.eu-west-2.amazonaws.com      |  eu-west-2       ||
+||  ec2.eu-west-1.amazonaws.com      |  eu-west-1       ||
+||  ec2.ap-northeast-2.amazonaws.com |  ap-northeast-2  ||
+||  ec2.ap-northeast-1.amazonaws.com |  ap-northeast-1  ||
+||  ec2.sa-east-1.amazonaws.com      |  sa-east-1       ||
+||  ec2.ca-central-1.amazonaws.com   |  ca-central-1    ||
+||  ec2.ap-southeast-1.amazonaws.com |  ap-southeast-1  ||
+||  ec2.ap-southeast-2.amazonaws.com |  ap-southeast-2  ||
+||  ec2.eu-central-1.amazonaws.com   |  eu-central-1    ||
+||  ec2.us-east-1.amazonaws.com      |  us-east-1       ||
+||  ec2.us-east-2.amazonaws.com      |  us-east-2       ||
+||  ec2.us-west-1.amazonaws.com      |  us-west-1       ||
+||  ec2.us-west-2.amazonaws.com      |  us-west-2       ||
+|+-----------------------------------+------------------+|
+
+
+
+## Congratulation you are good to go to the next level.
+
+
