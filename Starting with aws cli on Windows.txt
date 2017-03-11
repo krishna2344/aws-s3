@@ -1,0 +1,77 @@
+
+Use powershell to install pip and awscli
+
+$sudo apt-get install python-pip    	# To install pip
+$sudo pip install awscli 		#install awscli tool
+
+
+The AWS CLI makes API calls to services over HTTPS. Outbound connections on TCP port 443 must be enabled in order to perform calls.
+
+After creating an aws account go to:
+http://docs.aws.amazon.com/cli/latest/userguide/installing.html
+
+$ pip install --upgrade --user awscli
+
+
+Adding the AWS CLI Executable to your Command Line Path
+
+After installing with pip, add the aws executable to your OS's PATH environment variable. With an MSI installation, this should happen automatically, but you may need to set it manually if the aws command is not working.
+
+    Python 3.4 and pip (user mode) – %USERPROFILE%\AppData\Roaming\Python\Scripts
+
+    Python 3.5+ and pip (user mode) – %USERPROFILE%\AppData\Roaming\Python\Python35\Scripts
+
+    MSI installer (64-bit) – C:\Program Files\Amazon\AWSCLI
+
+    MSI installer (32-bit) – C:\Program Files (x86)\Amazon\AWSCLI
+
+To modify your PATH variable (Windows)
+
+    Press the Windows key and type environment variables.
+
+    Choose Edit environment variables for your account.
+
+    Choose PATH and then choose Edit.
+
+    Add paths to the Variable value field, separated by semicolons. For example: C:\existing\path;C:\new\path
+
+    Choose OK twice to apply the new settings.
+
+    Close any running command prompts and re-open.
+
+
+$aws help
+$aws configure
+$Enter Access Key 	<Provide Access Key>
+$Enter Secret Key 	<Provide Secret Key>
+$Enter Region 		<Provide default region code>
+$Enter output format 	<Enter>
+
+
+You can ensure correct config by looking into below 2 files:
+$~/.aws/credentials
+[default]
+aws_access_key_id=AKIAIOSFODNN7EXAMPLE
+aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+$~/.aws/config
+[default]
+region=us-west-2
+output=json
+
+Set defaults:
+
+$ set AWS_DEFAULT_PROFILE=user2
+$ set AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+$ set AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+$ set AWS_DEFAULT_REGION=us-west-2
+
+
+Start using CLI commands:
+
+$ aws ec2 describe-instances --output table --region us-east-1
+
+Group of command shall start as follows:
+aws ec2 run-instances 			##Launch one or more EC2 instances
+aws s3 sync 				##Sync a local directory with an S3 bucket
+aws cloudformation create-stack 	##Create a CloudFormation stack
