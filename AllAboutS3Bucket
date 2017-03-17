@@ -1,2 +1,26 @@
 ## S3 Buckets
+Simple Storage Service
+
+S3 basics:
+- S3 is an object-based storage. (As oppsed to EBS and EFS which are block based storage)
+- It is meant for storing flat files.
+- Buckets are a logical folder to keep files/folders with a globally unique name.
+- Can NOT be used for instalation of machine images etc.
+
+
+Features of S3 Buckets:
+- Can have files of size 0 to 5 TB.
+- Have unlimited storage capacity.
+- 99.9 % availability guaranteed.
+- System is built for 99.99% availability
+- Extremely durable storage.
+
+
+Types of S3:
+1. S3-Standard: Most commonly used. No retrieval fee charged. Used for frequently accessed files.
+2. S3-IA(Infrequent Access): For files that are not infrequently used, but when needed it has to be immediately available.
+3. S3 -RRS(Reduced Redundancy Storage): For less important files as the files are less durable.
+4. Glacier: Very cheap option. Used for archival purposes only. Files will not be immediately available(it may take hours to access files)
+
+
 
